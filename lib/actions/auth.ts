@@ -1,3 +1,5 @@
+"use server"
+
 import { signIn } from "@/auth";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
@@ -6,7 +8,7 @@ import { hash } from "bcryptjs";
 import { eq } from "drizzle-orm";
 
 
-export const SignInWithCredentials = async (params:Pick<AuthCredentials,"email"|"password">) {
+export const SignInWithCredentials = async (params:Pick<AuthCredentials,"email"|"password">) => {
      const {email,password} = params
 
      try {
@@ -24,7 +26,7 @@ export const SignInWithCredentials = async (params:Pick<AuthCredentials,"email"|
 }
 
 export const SignUp = async (params:AuthCredentials) => {
-    const {fullName,email,password,universityId,universityCard} = params ; 
+    const {email,password,fullName,universityId,universityCard} =  params ; 
 
     const UserExist = await db.select().from(users).where(eq(users.email,email))
 
@@ -32,7 +34,7 @@ export const SignUp = async (params:AuthCredentials) => {
         return {success:false, error:"user already exist !"}
     }
 
-    const hashedPassword = await hash(password,salt:10)
+    const hashedPassword = await hash(password,10)
 
     try {
         await db.insert(users).values({
@@ -43,15 +45,12 @@ export const SignUp = async (params:AuthCredentials) => {
             universityCard
         })
 
-        // await signInWithCredentials({email,password})
 
         return {success:true}
     } catch (error) {
         console.log(error,"SignUp error ");
-        return {succes:false,error:"SignUp error "}
+        return {success:false,error:"SignUp error "}
     }
 
 
 }
-
-export default SignUp

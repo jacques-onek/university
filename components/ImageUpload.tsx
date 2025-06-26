@@ -72,7 +72,7 @@ const ImageUpload = ({onFileChange}:{onFileChange:(filePath:string | undefined) 
           })
         )
 
-        setPreviewUrl(response.url)
+        setPreviewUrl(response.filePath)
         console.log(response.filePath)
         onFileChange(response.filePath)
 
