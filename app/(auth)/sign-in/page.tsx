@@ -4,8 +4,10 @@ import { SignInWithCredentials } from '@/lib/actions/auth'
 import { signInSchema } from '@/lib/validations'
 import React from 'react'
 
-const Page = () =>  (
+const page = () => {
 
+
+  return   (
     <AuthForm
      type="SIGN_IN"
      schema={signInSchema}
@@ -16,5 +18,5 @@ const Page = () =>  (
      onSubmit = {SignInWithCredentials}
     />
 )
-
-export default Page
+}
+export default page

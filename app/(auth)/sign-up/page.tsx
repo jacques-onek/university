@@ -6,7 +6,8 @@ import {SignUp} from "@/lib/actions/auth"
 import React from 'react'
 
 
-const Page = () => (
+const Page = () => {
+ return (
 <AuthForm
      type="SIGN_UP"
      schema={signUpSchema}
@@ -21,4 +22,5 @@ const Page = () => (
     />
 )
 
+}
 export default Page

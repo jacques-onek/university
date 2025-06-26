@@ -7,14 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:generate":"npx drizzle-kit generate",
-    "db:migrate":"npx drizzle-kit migrate",
-    "db:studio":"npx drizzle-kit studio"
+    "db:generate": "npx drizzle-kit generate",
+    "db:migrate": "npx drizzle-kit migrate",
+    "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
     "@imagekit/next": "^2.1.2",
     "@neondatabase/serverless": "^1.0.0",
+    "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.2",
     "@radix-ui/react-toast": "^1.2.14",
