@@ -5,7 +5,7 @@ import config from "@/lib/config";
 
 export async function POST(req: NextRequest) {
   const { email, subject, message } = await req.json();
-  console.log(config.env.emaijs.emailPublicKey)
+  console.log(process.env.EMAILJS_PUBLIC_KEY)
 
   try {
     const result = await emailjs.send(
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         message,
       },
       {
-        publicKey:config.env.emaijs.emailPublicKey!,
+        publicKey:process.env.EMAILJS_PUBLIC_KEY!,
         privateKey:config.env.emaijs.emailPrivateKey!,
       },
     );
