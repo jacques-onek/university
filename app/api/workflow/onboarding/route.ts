@@ -1,4 +1,4 @@
-// app/api/workflow/route.ts
+
 import { serve } from "@upstash/workflow/nextjs";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
@@ -42,7 +42,7 @@ const getUserState = async (email: string): Promise<UserState> => {
 export const { POST } = serve<InitialData>(async (context) => {
   const { email, fullName } = context.requestPayload;
 
-  // Étape 1 : e-mail de bienvenue
+  //  e-mail de bienvenue
   await context.run("new-signup", async () => {
     await sendEmail({
       email,

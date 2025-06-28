@@ -15,7 +15,7 @@ const ImageUpload = ({onFileChange}:{onFileChange:(filePath:string | undefined) 
   
   const authenticator = async () => {
   try {
-      const response = await fetch(`${config.env.apiEndpoint}/api/auth/imageKit`)
+      const response = await fetch(`${config.env.prodApiEndpoint}/api/auth/imageKit`)
       if (!response.ok) {
         const errorText = await response.text();
   
