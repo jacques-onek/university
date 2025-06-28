@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       config.env.emaijs.emailId!,
       config.env.emaijs.emailTemplateId!,
       {
-        user_email: email,
+        email: email,
         subject,
         message,
       },
