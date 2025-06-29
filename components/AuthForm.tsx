@@ -24,6 +24,7 @@ const AuthForm = <T extends FieldValues> ({type,schema,defaultValues,onSubmit}: 
     const isSignIn = type === "SIGN_IN" ;
     
     const form : UseFormReturn<T> = useForm ({
+     //  @ts-ignore
         resolver:zodResolver(schema),
         defaultValues: defaultValues as DefaultValues<T>
     })
