@@ -6,21 +6,26 @@ import { Form, FormControl , FormField, FormItem, FormLabel, FormMessage } from 
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import Link from "next/link";
-import ImageUpload from "../../ImageUpload";
+import ImageUpload from "../../FileUpload";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { bookSchema } from "@/lib/validations";
 import { Book } from "@/types";
 import { Textarea } from "@/components/ui/textarea"
+import FileUpload from "../../FileUpload";
+import ColorPicker from "../ColorPicker";
+import createBook from "@/lib/admin/actions/book";
+
 
 interface Props extends Partial<Book> {
   type?: "create" | "update";
 }
 
+
 const BookForm = ({type,...book}: Props) => {
 
-    const router = useRouter()
     
+const router = useRouter()
     
     const form  = useForm<z.infer<typeof bookSchema>> ({
      //  @ts-ignore
@@ -41,21 +46,22 @@ const BookForm = ({type,...book}: Props) => {
     })
 
     const onSubmit =  async (values: z.infer<typeof bookSchema>) => {
-      // const result = 
-      // if (result.success) {
-      //   toast({
-      //     title:"Success",    
-      //     description:isSignIn ? "you have SuccessFully SignIn" :"you have SuccessFully SignUp "
-      //   })
-      //   router.push("/")
-      // }
-      // else {
-      //   toast({
-      //     title:isSignIn ?"SignIn Failed":"SignUp Falaid",
-      //     description:result.error ?? "An error Occured.",
-      //     variant:"destructive"
-      //   })
-      // }
+
+      const result = await createBook(values)
+      if (result.success) {
+        toast({
+          title:"Success",    
+          description: "you have SuccessFully add the book" 
+        })
+        router.push(`/admin/books/${result.data.id}`)
+      }
+      else {
+        toast({
+          title:"can not create book",
+          description:result.message ?? "An error Occured while creating book",
+          variant:"destructive"
+        })
+      }
     }
   return (
     <div className="flex flex-col gap-4">
@@ -186,7 +192,13 @@ const BookForm = ({type,...book}: Props) => {
                        Book Image
                      </FormLabel>
                      <FormControl>
-                      {/* file upload component  */}
+                       <FileUpload type="image" accept="image/*" 
+                       placeholder="Upload a book cover" 
+                       folder="books/covers" 
+                       variant="light"
+                       onFileChange={field.onChange}
+                       value={field.value}
+                       />
                      </FormControl>
                      <FormMessage />
                    </FormItem>
@@ -202,7 +214,9 @@ const BookForm = ({type,...book}: Props) => {
                        Primary color 
                      </FormLabel>
                      <FormControl>
-                      {/* Color Picker  */}
+                       <ColorPicker onPickerChange={field.onChange}
+                        value={field.value}
+                       />
                      </FormControl>
                      <FormMessage />
                    </FormItem>
@@ -234,7 +248,13 @@ const BookForm = ({type,...book}: Props) => {
                        Book Trailer
                      </FormLabel>
                      <FormControl>
-                      {/* file upload component  */}
+                       <FileUpload type="video" accept="video/*" 
+                       placeholder="Upload a book cover" 
+                       folder="books/videos" 
+                       variant="light"
+                       onFileChange={field.onChange}
+                       value={field.value}
+                       />                    
                      </FormControl>
                      <FormMessage />
                    </FormItem>
