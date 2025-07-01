@@ -7,7 +7,7 @@ const {env:{imagekit:{publicKey,privateKey}}} = config
   
   const token = crypto.randomUUID();
   const now = Math.floor(Date.now() / 1000);
-  const expire = now + 5; 
+  const expire = now + 20; 
 
 const {signature } = getUploadAuthParams({
     privateKey:privateKey!,
