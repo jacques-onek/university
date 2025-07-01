@@ -23,3 +23,15 @@ export type AuthCredentials = {
   universityCard: string
 }
 
+export interface BookParams {
+  title:string
+  author:string
+  genre:string
+  rating:number 
+  coverUrl:string 
+  coverColor: string
+  description:string
+  totalCopies:number 
+  videoUrl:string
+  summary:string 
+}
