@@ -4,10 +4,16 @@ import {getUploadAuthParams} from "@imagekit/next/server"
 
 
 const {env:{imagekit:{publicKey,privateKey}}} = config
+  
+  const token = crypto.randomUUID();
+  const now = Math.floor(Date.now() / 1000);
+  const expire = now + 5; 
 
-const { token, expire, signature } = getUploadAuthParams({
+const {signature } = getUploadAuthParams({
     privateKey:privateKey!,
-    publicKey:publicKey!
+    publicKey:publicKey!,
+    token,
+    expire
 })
 
 export async function  GET() {
