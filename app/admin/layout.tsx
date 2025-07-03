@@ -4,12 +4,20 @@ import React, { Children, ReactNode } from 'react'
 import "@/styles/admin.css"
 import Sidebar from '@/components/admin/Sidebar'
 import Header from '@/components/admin/Header'
+import { db } from '@/database/drizzle'
+import { users } from '@/database/schema'
+import { and, eq } from 'drizzle-orm'
 
 const layout =async ({children}:{children:ReactNode}) => {
 
     const session = await auth()
 
     if(!session?.user?.id) redirect ("/sign-in")
+    // const isAdmin = await db.select().from(users).
+    // where(and( eq(users.id,session.user.id),eq(users.role,"ADMIN")))
+    // if (!isAdmin) {
+    //   redirect("/")
+    // }
   return (
     <main className='flex min-h-screen w-full flex-row'>
         <Sidebar session={session}/>
