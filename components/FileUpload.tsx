@@ -17,6 +17,25 @@ interface Props {
   value:string
 }
 
+export const authenticator = async () => {
+try {
+    const response = await fetch(`${config.env.apiEndpoint}/api/auth/imageKit`,{cache:"reload"})
+    if (!response.ok) {
+      const errorText = await response.text();
+
+      throw new Error(
+        `Request failed with status ${response.status} : ${errorText}`
+      )
+    }
+
+    const data = await response.json();
+    const {signature,expire,token} = data
+    return {token,expire,signature}
+  } catch (error:any) {
+    throw new Error(`authentification failed ${error.message}`)
+  }
+}
+
 const FileUpload = ({type,accept,placeholder,folder,variant,onFileChange,value}:Props) => {
   
   const UploadRef= useRef<HTMLInputElement>(null)
@@ -28,24 +47,6 @@ const FileUpload = ({type,accept,placeholder,folder,variant,onFileChange,value}:
     button:variant ==="dark" ? "bg-dark-300" : "bg-light-600 border-gray-100 border",
     placeholder:variant ==="dark" ? "text-light-100" :"text-slate-500",
     text:variant ==="dark" ? "text-light-100" : "text-dark-500"
-  }
-  const authenticator = async () => {
-  try {
-      const response = await fetch(`${config.env.prodApiEndpoint}/api/auth/imageKit`,{cache:"reload"})
-      if (!response.ok) {
-        const errorText = await response.text();
-  
-        throw new Error(
-          `Request failed with status ${response.status} : ${errorText}`
-        )
-      }
-  
-      const data = await response.json();
-      const {signature,expire,token} = data
-      return {token,expire,signature}
-    } catch (error:any) {
-      throw new Error(`authentification failed ${error.message}`)
-    }
   }
 
   const onValidate = (file:File) => {

@@ -2,9 +2,10 @@ import { signOut } from '@/auth'
 import BookList from '@/components/BookList'
 import { Button } from '@/components/ui/button'
 import { sampleBooks } from '@/constant'
+import { db } from '@/database/drizzle'
 import React from 'react'
 
-const page = () => {
+const page =() => {
   return (
     <>
     <form action={async () => {
