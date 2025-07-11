@@ -1,12 +1,18 @@
+
 import Image from 'next/image'
 import React from 'react'
 import { Button } from './ui/button'
 import BookCover from './BookCover'
 import { Book } from '@/types'
+import { auth } from '@/auth'
+import BorrowBtn from './BorrowBtn'
 
 
 
-const BookOverview = ({title,author,genre,rating,totalCopies,availableCopies,description,coverColor,coverUrl}:Book) => {
+const BookOverview = async ({id,title,author,genre,rating,totalCopies,availableCopies,description,coverColor,coverUrl}:Book) => {
+   const session = await auth()
+   const userId = session?.user?.id!
+   const bookId = id!
   return (
     <section className='book-overview'>
        <div className='flex flex-1 flex-col gap-5'>
@@ -34,10 +40,7 @@ const BookOverview = ({title,author,genre,rating,totalCopies,availableCopies,des
             </p>
          </div>
           <p className='book-description'> {description} </p>
-          <Button className='book-overview_btn'>
-             <Image src="/icons/book.svg" alt='book' width={20} height={20} />
-              <p className='font-bebas-neue text-xl text-dark-100'> Borrow</p>
-          </Button>
+          <BorrowBtn userId={userId} bookId={bookId} />
        </div>
        <div className='relative flex flex-1 justify-center'>
           <div className='relative'>
