@@ -1,4 +1,4 @@
-"use server";
+"use server"
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords } from "@/database/schema";
