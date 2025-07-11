@@ -15,6 +15,13 @@
       "when": 1751302149788,
       "tag": "0001_overconfident_screwball",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752221410935,
+      "tag": "0002_striped_iron_monger",
+      "breakpoints": true
     }
   ]
 }
