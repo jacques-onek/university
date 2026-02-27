@@ -7,18 +7,18 @@ import { AuthCredentials } from "@/types"
 import { hash } from "bcryptjs";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
-import ratelimit from "../ratelimit";
+// import ratelimit from "../ratelimit";
 import { redirect } from "next/navigation";
-import { workflowClient } from "../workflow";
+// import { workflowClient } from "../workflow";
 import config from "../config";
 
 
 export const SignInWithCredentials = async (params:Pick<AuthCredentials,"email"|"password">) => {
      const {email,password} = params
      
-    const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1"
-    const {success} = await ratelimit.limit(ip)
-    if (!success) return redirect("/too-fast") 
+    // const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1"
+    // const {success} = await ratelimit.limit(ip)
+    // if (!success) return redirect("/too-fast") 
 
      try {
         
@@ -37,9 +37,9 @@ export const SignInWithCredentials = async (params:Pick<AuthCredentials,"email"|
 export const SignUp = async (params:AuthCredentials) => {
     const {email,password,fullName,universityId,universityCard} =  params ; 
 
-    const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1"
-    const {success} = await ratelimit.limit(ip)
-    if (!success) return redirect("/too-fast") 
+    // const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1"
+    // const {success} = await ratelimit.limit(ip)
+    // if (!success) return redirect("/too-fast") 
 
     const UserExist = await db.select().from(users).where(eq(users.email,email))
 
@@ -59,10 +59,10 @@ export const SignUp = async (params:AuthCredentials) => {
         })
 
   await SignInWithCredentials({email,password})
-  await workflowClient.trigger({
-        url: `${config.env.prodApiEndpoint}/api/workflow/onboarding`,
-        body: { email, fullName },
-     });
+  // await workflowClient.trigger({
+  //       url: `${config.env.prodApiEndpoint}/api/workflow/onboarding`,
+  //       body: { email, fullName },
+  //    });
         return {success:true}
     } catch (error) {
         console.log(error,"SignUp error ");
