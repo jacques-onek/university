@@ -1,12 +1,9 @@
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
-import React, { Children, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import "@/styles/admin.css"
 import Sidebar from '@/components/admin/Sidebar'
 import Header from '@/components/admin/Header'
-import { db } from '@/database/drizzle'
-import { users } from '@/database/schema'
-import { and, eq } from 'drizzle-orm'
 
 const layout =async ({children}:{children:ReactNode}) => {
 

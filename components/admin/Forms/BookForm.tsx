@@ -5,8 +5,6 @@ import { z } from "zod"
 import { Form, FormControl , FormField, FormItem, FormLabel, FormMessage } from "../../ui/form";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
-import Link from "next/link";
-import ImageUpload from "../../FileUpload";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { bookSchema } from "@/lib/validations";
@@ -14,7 +12,7 @@ import { Book } from "@/types";
 import { Textarea } from "@/components/ui/textarea"
 import FileUpload from "../../FileUpload";
 import ColorPicker from "../ColorPicker";
-import createBook from "@/lib/admin/actions/book";
+import createBook, { updateBook } from "@/lib/admin/actions/book";
 
 
 interface Props extends Partial<Book> {
@@ -22,43 +20,51 @@ interface Props extends Partial<Book> {
 }
 
 
-const BookForm = ({type,...book}: Props) => {
+const BookForm = ({type = "create",...book}: Props) => {
 
     
 const router = useRouter()
     
     const form  = useForm<z.infer<typeof bookSchema>> ({
-     //  @ts-ignore
         resolver:zodResolver(bookSchema),
         defaultValues:{
-         title: "",
-         description:"",
-         author: "",
-         genre:"",
-         rating:1,
-         totalCopies:1,
-         coverUrl:"",
-         coverColor:"",
-         videoUrl: "",
-        summary:""
+         title: book.title ?? "",
+         description:book.description ?? "",
+         author: book.author ?? "",
+         genre:book.genre ?? "",
+         rating:book.rating ?? 1,
+         totalCopies:book.totalCopies ?? 1,
+         coverUrl:book.coverUrl ?? "",
+         coverColor:book.coverColor ?? "#171717",
+         videoUrl: book.videoUrl ?? "",
+        summary:book.summary ?? ""
 
         }
     })
 
     const onSubmit =  async (values: z.infer<typeof bookSchema>) => {
-
-      const result = await createBook(values)
+      const result =
+        type === "create"
+          ? await createBook(values)
+          : await updateBook(book.id!, values);
       if (result.success) {
         toast({
           title:"Success",    
-          description: "you have SuccessFully add the book" 
+          description:
+            type === "create"
+              ? "you have SuccessFully add the book"
+              : "you have SuccessFully updated the book",
         })
-        router.push(`/admin/books/${result.data.id}`)
+        router.push(`/admin/books`)
       }
       else {
         toast({
-          title:"can not create book",
-          description:result.message ?? "An error Occured while creating book",
+          title:type === "create" ? "can not create book" : "can not update book",
+          description:
+            result.message ??
+            (type === "create"
+              ? "An error Occured while creating book"
+              : "An error Occured while updating book"),
           variant:"destructive"
         })
       }
@@ -83,7 +89,7 @@ const router = useRouter()
                      <FormControl>
                         <Input
                           required
-                          className="book-form"
+                          className="book-form_input"
                           placeholder="Book Title "
                           {...field}
                         />
@@ -105,7 +111,7 @@ const router = useRouter()
                      <FormControl>
                         <Input
                           required
-                          className="book-form"
+                          className="book-form_input"
                           placeholder="Book Author "
                           {...field}
                         />
@@ -127,7 +133,7 @@ const router = useRouter()
                      <FormControl>
                         <Input
                           required
-                          className="book-form"
+                          className="book-form_input"
                           placeholder="Book Genre "
                           {...field}
                         />
@@ -151,7 +157,7 @@ const router = useRouter()
                         min={1}
                         max={5}
                         placeholder="Book rating"
-                          className="book-form"
+                          className="book-form_input"
                           {...field}
                         />
                      </FormControl>
@@ -174,7 +180,7 @@ const router = useRouter()
                         min={1}
                         max={10000}
                         placeholder="Total Book copies"
-                          className="book-form"
+                          className="book-form_input"
                           {...field}
                         />
                      </FormControl>
@@ -278,7 +284,7 @@ const router = useRouter()
                />                  
 
           <Button type="submit" className="book-form_btn text-white">
-            Add New Book To The Library
+            {type === "create" ? "Add New Book To The Library" : "Save Book Changes"}
           </Button>
         </form>
       </Form>

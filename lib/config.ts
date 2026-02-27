@@ -11,12 +11,6 @@ const config = {
             privateKey:process.env.IMAGEKIT_PRIVATE_KEY
         },
         databaseUrl:process.env.DATABASE_URL!,
-        upstash:{
-            redisUrl:process.env.UPSTASH_REDIS_URL,
-            redisToken:process.env.UPSTASH_REDIS_TOKEN,
-            qstashUrl: process.env.QSTASH_URL,
-            qstashToken: process.env.QSTASH_TOKEN
-        },
         emaijs:{
             emailId:process.env.EMAILJS_SERVICE_ID,
             emailTemplateId:process.env.EMAILJS_TEMPLATE_ID,

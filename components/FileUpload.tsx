@@ -19,7 +19,7 @@ interface Props {
 
 export const authenticator = async () => {
 try {
-    const response = await fetch(`${config.env.prodApiEndpoint}/api/auth/imageKit`,{cache:"reload"})
+    const response = await fetch("/api/auth/imageKit",{cache:"no-store"})
     if (!response.ok) {
       const errorText = await response.text();
 

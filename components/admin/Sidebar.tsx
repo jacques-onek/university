@@ -3,6 +3,7 @@ import { adminSideBarLinks } from '@/constant'
 import { cn, getInitials } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { signOut } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 import { Avatar,AvatarFallback } from '../ui/avatar'
@@ -38,16 +39,27 @@ const Sidebar = ({session}:{session:Session}) => {
              </div>
         </div>
 
-        <div className='flex gap-3'>
-            <Avatar>
-                  <AvatarFallback className='bg-amber-700 font-semibold'>
-                     {getInitials(session?.user?.name || "ON") }
-                  </AvatarFallback>
+        <div className='user'>
+          <div className='relative'>
+            <Avatar className='size-12'>
+              <AvatarFallback className='bg-primary-admin/15 font-semibold text-primary-admin'>
+                {getInitials(session?.user?.name || "ON") }
+              </AvatarFallback>
             </Avatar>
-        <div className='flex flex-col max-md:hidden'>
-           <p className='font-semibold text-dark-200'> {session?.user?.name} </p>
-           <p className='text-light-500 text-xs'> {session?.user?.email} </p>
-        </div>
+            <span className='absolute bottom-0 right-0 size-2.5 rounded-full bg-green-500 ring-2 ring-white' />
+          </div>
+          <div className='flex flex-1 flex-col max-md:hidden'>
+            <p className='font-semibold text-dark-200 line-clamp-1'> {session?.user?.name} </p>
+            <p className='text-light-500 text-sm line-clamp-1'> {session?.user?.email} </p>
+          </div>
+          <button
+            aria-label='Logout'
+            className='ml-auto rounded-full p-1 transition-colors hover:bg-light-300 max-md:hidden'
+            onClick={() => signOut({ callbackUrl: "/sign-in" })}
+            type='button'
+          >
+            <Image src="/icons/logout.svg" alt='logout' width={20} height={20} />
+          </button>
         </div>
     </div>
   )
