@@ -121,6 +121,199 @@
     @apply mt-4 min-h-14 w-fit bg-primary text-dark-100 hover:bg-primary/90 max-md:w-full !important;
   }
 
+  /* Reservation Panel */
+  .reservation-panel {
+    @apply mt-6 rounded-2xl border border-light-100/10 bg-dark-300/50 p-5;
+  }
+
+  .reservation-panel_head h3 {
+    @apply text-2xl font-semibold text-white;
+  }
+
+  .reservation-panel_head p {
+    @apply mt-1 text-light-100;
+  }
+
+  .reservation-day-controls {
+    @apply mt-4 flex items-center gap-3;
+  }
+
+  .reservation-day-btn {
+    @apply inline-flex size-10 items-center justify-center rounded-md border border-light-100/20 bg-dark-300 text-light-100 transition-colors hover:bg-dark-100;
+  }
+
+  .reservation-date-input {
+    @apply h-10 rounded-md border border-light-100/20 bg-dark-300 px-3 text-light-100;
+  }
+
+  .reservation-day-label {
+    @apply mt-3 text-sm text-light-100;
+  }
+
+  .reservation-boundary-row {
+    @apply mt-3 flex items-center gap-2;
+  }
+
+  .reservation-boundary-input {
+    @apply flex min-h-12 min-w-[130px] flex-col justify-center rounded-md border border-light-100/20 bg-dark-300 px-3 text-left text-light-100;
+  }
+
+  .reservation-boundary-input small {
+    @apply text-[11px] text-light-100;
+  }
+
+  .reservation-boundary-input span {
+    @apply text-sm font-semibold text-white;
+  }
+
+  .reservation-boundary-input_active {
+    @apply ring-2 ring-primary;
+  }
+
+  .reservation-boundary-sep {
+    @apply text-sm text-light-100;
+  }
+
+  .reservation-popup {
+    @apply mt-4 grid gap-3 rounded-xl border border-light-100/10 bg-dark-300 p-3 md:grid-cols-[1fr_120px];
+  }
+
+  .reservation-popup_calendar {
+    @apply rounded-lg bg-dark-100/40 p-3;
+  }
+
+  .reservation-popup_header {
+    @apply mb-3 flex items-center justify-between;
+  }
+
+  .reservation-popup_header p {
+    @apply text-sm font-semibold text-white;
+  }
+
+  .reservation-popup_weekdays {
+    @apply grid grid-cols-7 text-center text-[11px] uppercase text-light-100;
+  }
+
+  .reservation-popup_days {
+    @apply mt-2 grid grid-cols-7 gap-1;
+  }
+
+  .reservation-day-empty {
+    @apply size-8;
+  }
+
+  .reservation-day-cell {
+    @apply size-8 rounded-md text-xs text-light-100 transition-colors hover:bg-dark-300 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .reservation-day-cell_active {
+    @apply bg-primary text-dark-100;
+  }
+
+  .reservation-popup_times {
+    @apply rounded-lg bg-dark-100/40 p-2;
+  }
+
+  .reservation-popup_times-title {
+    @apply mb-2 text-xs font-semibold uppercase text-light-100;
+  }
+
+  .reservation-popup_times-list {
+    @apply max-h-[220px] space-y-1 overflow-y-auto pr-1;
+  }
+
+  .reservation-time-item {
+    @apply w-full rounded-md px-2 py-1.5 text-left text-xs text-light-100 transition-colors hover:bg-dark-300 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .reservation-time-item_active {
+    @apply bg-primary text-dark-100;
+  }
+
+  .reservation-my-list {
+    @apply mt-4 rounded-lg border border-light-100/10 bg-dark-100/30 p-3;
+  }
+
+  .reservation-my-list p {
+    @apply text-xs text-light-100;
+  }
+
+  .reservation-my-list-items {
+    @apply mt-2 flex flex-wrap gap-2;
+  }
+
+  .reservation-my-list-items button {
+    @apply rounded-md border border-amber-400/40 bg-amber-400/10 px-2 py-1 text-xs text-amber-100;
+  }
+
+  .reservation-legend {
+    @apply mt-3 flex flex-wrap items-center gap-4 text-xs text-light-100;
+  }
+
+  .reservation-legend span {
+    @apply inline-flex items-center gap-1.5;
+  }
+
+  .reservation-legend i {
+    @apply inline-block size-2.5 rounded-full;
+  }
+
+  .legend-free {
+    @apply bg-emerald-400;
+  }
+
+  .legend-booked {
+    @apply bg-rose-400;
+  }
+
+  .legend-mine {
+    @apply bg-amber-300;
+  }
+
+  .reservation-slots-grid {
+    @apply mt-4 grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .reservation-slot {
+    @apply rounded-lg border p-3 text-left transition-colors;
+  }
+
+  .reservation-slot span {
+    @apply block text-sm font-semibold;
+  }
+
+  .reservation-slot small {
+    @apply mt-1 block text-xs;
+  }
+
+  .reservation-slot_free {
+    @apply border-emerald-500/40 bg-emerald-500/10 text-emerald-200 hover:bg-emerald-500/20;
+  }
+
+  .reservation-slot_booked {
+    @apply cursor-not-allowed border-rose-500/40 bg-rose-500/10 text-rose-200;
+  }
+
+  .reservation-slot_mine {
+    @apply border-amber-400/50 bg-amber-400/10 text-amber-100 hover:bg-amber-400/20;
+  }
+
+  .reservation-slot_selected {
+    @apply ring-2 ring-primary;
+  }
+
+  .reservation-actions {
+    @apply mt-4;
+  }
+
+  .reservation-error {
+    @apply mb-2 text-sm text-rose-300;
+  }
+
+  .reservation-cta {
+    @apply min-h-11 rounded-md bg-primary px-4 font-bebas-neue text-xl text-dark-100 transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-light-100/20 disabled:text-light-100;
+  }
+
   /* File Upload */
   .upload-btn {
     @apply flex min-h-14 w-full items-center justify-center gap-1.5 rounded-md;
@@ -267,6 +460,289 @@
 
   .book-details h3 {
     @apply text-xl font-semibold text-primary;
+  }
+
+  .book-details_main {
+    @apply flex-1;
+  }
+
+  .book-details_video {
+    @apply overflow-hidden rounded-2xl bg-dark-300/60;
+  }
+
+  .book-details_video video {
+    @apply w-full h-auto;
+  }
+
+  .book-details_similar {
+    @apply w-full lg:w-[420px] xl:w-[460px];
+  }
+
+  .similar-books-grid {
+    @apply mt-7 grid grid-cols-2 gap-5 sm:grid-cols-3;
+  }
+
+  .similar-book-item {
+    @apply inline-flex justify-center rounded-xl p-1 transition-transform duration-200 hover:scale-[1.03];
+  }
+
+  /* Library Page */
+  .library-page {
+    @apply pb-10;
+  }
+
+  .library-page_header {
+    @apply mt-8;
+  }
+
+  .library-page_header h1 {
+    @apply text-5xl font-semibold text-white md:text-6xl;
+  }
+
+  .library-page_header p {
+    @apply mt-2 text-xl text-light-100;
+  }
+
+  .library-filters {
+    @apply mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between;
+  }
+
+  .library-filters_search-form {
+    @apply w-full lg:max-w-2xl;
+  }
+
+  .library-filters_search-wrap {
+    @apply flex min-h-14 items-center gap-3 rounded-xl bg-dark-300 px-4;
+  }
+
+  .library-filters_search-input {
+    @apply w-full border-none bg-transparent text-base font-semibold text-white placeholder:text-light-100 focus-visible:outline-none;
+  }
+
+  .library-filters_selects {
+    @apply flex flex-col gap-3 sm:flex-row;
+  }
+
+  .library-filters_select {
+    @apply min-h-14 min-w-[170px] rounded-xl border border-light-100/20 bg-dark-300 px-4 text-base text-light-100 outline-none;
+  }
+
+  .library-page_empty {
+    @apply mt-12 flex flex-col items-center rounded-2xl border border-light-100/10 bg-dark-300/40 px-6 py-10 text-center;
+  }
+
+  .library-page_empty-title {
+    @apply text-3xl font-semibold text-white;
+  }
+
+  .library-page_empty-text {
+    @apply mt-2 text-light-100;
+  }
+
+  .library-page_empty-btn {
+    @apply mt-6 inline-flex min-h-12 items-center justify-center rounded-md bg-primary px-6 font-bebas-neue text-2xl text-dark-100 hover:bg-primary/90;
+  }
+
+  /* Profile Page */
+  .profile-page {
+    @apply pb-10;
+  }
+
+  .profile-page_logout {
+    @apply mb-8;
+  }
+
+  .profile-layout {
+    @apply grid grid-cols-1 gap-8 xl:grid-cols-[minmax(340px,520px)_1fr];
+  }
+
+  .profile-card {
+    @apply gradient-blue rounded-3xl border border-light-100/10 p-8;
+  }
+
+  .profile-card_head {
+    @apply flex items-center gap-4;
+  }
+
+  .profile-card_avatar {
+    @apply size-[86px] rounded-full object-cover ring-4 ring-primary/20;
+  }
+
+  .profile-card_avatar-fallback {
+    @apply flex size-[86px] items-center justify-center rounded-full bg-dark-300 text-2xl font-semibold text-primary;
+  }
+
+  .profile-card_badge {
+    @apply inline-flex items-center gap-2 text-sm text-light-100;
+  }
+
+  .profile-card_badge-dot {
+    @apply size-2 rounded-full bg-primary;
+  }
+
+  .profile-card h2 {
+    @apply mt-1 text-4xl font-semibold text-white;
+  }
+
+  .profile-card_email {
+    @apply text-light-100;
+  }
+
+  .profile-card_meta {
+    @apply mt-10 space-y-7;
+  }
+
+  .profile-card_meta p {
+    @apply text-light-100;
+  }
+
+  .profile-card_meta h3 {
+    @apply mt-1 text-4xl font-semibold text-white;
+  }
+
+  .profile-borrowed h2 {
+    @apply text-5xl font-semibold text-light-100;
+  }
+
+  .profile-borrowed_grid {
+    @apply mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2;
+  }
+
+  .profile-borrowed_card {
+    @apply gradient-vertical rounded-2xl border border-light-100/10 p-5;
+  }
+
+  .profile-borrowed_link {
+    @apply block;
+  }
+
+  .profile-borrowed_cover {
+    @apply rounded-xl bg-dark-300/40 p-4;
+  }
+
+  .profile-borrowed_title {
+    @apply mt-5 line-clamp-2 text-4xl font-semibold leading-tight text-white;
+  }
+
+  .profile-borrowed_genre {
+    @apply mt-2 text-xl italic text-light-100;
+  }
+
+  .profile-borrowed_meta {
+    @apply mt-5 space-y-2 text-xl text-light-100;
+  }
+
+  .profile-borrowed_alert {
+    @apply text-[#f87171];
+  }
+
+  .profile-borrowed_ok {
+    @apply text-[#34d399];
+  }
+
+  .profile-borrowed_empty {
+    @apply mt-6 rounded-2xl border border-light-100/10 bg-dark-300/40 p-6 text-light-100;
+  }
+
+  /* Search Page */
+  .search-page {
+    @apply pb-10;
+  }
+
+  .search-hero {
+    @apply mx-auto mt-24 max-w-4xl text-center;
+  }
+
+  .search-kicker {
+    @apply text-sm font-semibold tracking-[0.2em] text-light-100;
+  }
+
+  .search-hero h1 {
+    @apply mt-4 text-5xl font-semibold leading-tight text-white md:text-7xl;
+  }
+
+  .search-hero h1 span {
+    @apply text-primary;
+  }
+
+  .search-form {
+    @apply mx-auto mt-10 max-w-3xl;
+  }
+
+  .search-input-wrap {
+    @apply flex min-h-[76px] items-center gap-4 rounded-2xl bg-dark-300 px-6;
+  }
+
+  .search-input-field {
+    @apply w-full border-none bg-transparent text-3xl font-semibold text-white placeholder:text-light-100 focus-visible:outline-none;
+  }
+
+  .search-filter-wrap {
+    @apply mt-10 flex items-center justify-end gap-2;
+  }
+
+  .search-filter-label {
+    @apply text-xl text-light-100;
+  }
+
+  .search-filter-select {
+    @apply min-h-12 rounded-md border border-light-100/20 bg-dark-300 px-3 text-xl text-primary outline-none;
+  }
+
+  .search-results-head {
+    @apply mt-16;
+  }
+
+  .search-results-head h2 {
+    @apply text-5xl font-semibold text-light-100;
+  }
+
+  .search-results-head h2 span {
+    @apply text-primary;
+  }
+
+  .search-results-grid {
+    @apply mt-10 grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6;
+  }
+
+  .search-book-card {
+    @apply inline-flex flex-col gap-4;
+  }
+
+  .search-book-meta {
+    @apply max-w-[190px];
+  }
+
+  .search-book-title {
+    @apply line-clamp-2 text-3xl font-semibold leading-tight text-white;
+  }
+
+  .search-book-genre {
+    @apply mt-2 line-clamp-1 text-xl italic text-light-100;
+  }
+
+  .search-empty-state {
+    @apply mx-auto mt-16 flex max-w-2xl flex-col items-center text-center;
+  }
+
+  .search-empty-icon-wrap {
+    @apply flex size-[224px] items-center justify-center rounded-full bg-[#242C4A];
+  }
+
+  .search-empty-icon {
+    @apply size-[224px];
+  }
+
+  .search-empty-state h3 {
+    @apply mt-8 text-5xl font-semibold text-white;
+  }
+
+  .search-empty-state p {
+    @apply mt-2 text-xl text-light-100;
+  }
+
+  .search-empty-clear {
+    @apply mt-8 inline-flex min-h-14 min-w-[340px] items-center justify-center rounded-md bg-primary font-bebas-neue text-3xl text-dark-100 transition-colors hover:bg-primary/90;
   }
 
   /* Library */
